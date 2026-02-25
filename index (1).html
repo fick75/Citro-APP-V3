@@ -1,0 +1,724 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>CITRO - Portal de Tramites | Universidad Veracruzana</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --ink:#0A1628; --ink2:#13264A; --teal:#0A7A6E; --teal2:#0CBDAB;
+  --amber:#E8920A; --amber2:#FFB830; --cream:#F7F4EF; --paper:#FDFCFA;
+  --border:#D8E0EE; --muted:#6B7FA0; --white:#fff; --green:#1A7A4A;
+  --blue:#1B5FA8; --purple:#5B2F8A; --orange:#B85C0A;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:15px;scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden}
+
+/* NAV */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;height:60px;
+  background:rgba(10,22,40,.93);backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.07);
+  display:flex;align-items:center;padding:0 48px;
+}
+.nav-logo{display:flex;align-items:center;gap:11px;text-decoration:none}
+.nav-seal{
+  width:34px;height:34px;border-radius:8px;background:var(--amber);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:.95rem;color:var(--ink);
+  box-shadow:0 0 0 3px rgba(232,146,10,.25);flex-shrink:0;
+}
+.nav-name{font-weight:600;font-size:.88rem;color:#fff}
+.nav-name span{color:rgba(255,255,255,.35);font-weight:300;margin-left:4px}
+.nav-links{display:flex;gap:2px;margin-left:auto;align-items:center}
+.nav-link{
+  padding:6px 14px;border-radius:5px;font-size:.8rem;font-weight:500;
+  color:rgba(255,255,255,.45);text-decoration:none;transition:all .15s;
+}
+.nav-link:hover{color:#fff;background:rgba(255,255,255,.07)}
+.nav-cta{
+  margin-left:10px;padding:7px 20px;border-radius:6px;
+  background:var(--teal);color:#fff;font-size:.82rem;font-weight:600;
+  text-decoration:none;transition:all .18s;
+  box-shadow:0 2px 12px rgba(10,122,110,.4);
+}
+.nav-cta:hover{background:var(--teal2);transform:translateY(-1px)}
+
+/* HERO */
+.hero{
+  min-height:100vh;background:var(--ink);
+  display:flex;align-items:center;
+  position:relative;overflow:hidden;
+  padding:100px 48px 80px;
+}
+.hero-grid{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
+  background-size:52px 52px;
+  pointer-events:none;
+}
+.hero-orb{
+  position:absolute;border-radius:50%;pointer-events:none;
+}
+.hero-orb.a{
+  width:640px;height:640px;
+  background:radial-gradient(circle,rgba(10,122,110,.16) 0%,transparent 65%);
+  right:-120px;top:50%;transform:translateY(-50%);
+}
+.hero-orb.b{
+  width:380px;height:380px;
+  background:radial-gradient(circle,rgba(232,146,10,.1) 0%,transparent 65%);
+  left:5%;bottom:-80px;
+}
+.hero-inner{
+  position:relative;z-index:1;
+  max-width:1160px;margin:0 auto;width:100%;
+  display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:.68rem;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--amber2);margin-bottom:22px;
+}
+.hero-eyebrow::before{content:'';width:22px;height:2px;background:var(--amber2);border-radius:1px}
+.hero-h1{
+  font-family:'Playfair Display',serif;
+  font-size:3.4rem;line-height:1.1;color:#fff;font-weight:700;
+  margin-bottom:22px;
+}
+.hero-h1 em{font-style:italic;color:var(--amber2)}
+.hero-desc{
+  font-size:.97rem;color:rgba(255,255,255,.5);
+  line-height:1.8;max-width:460px;margin-bottom:36px;
+}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px}
+.btn-hero{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 26px;border-radius:8px;
+  font-size:.88rem;font-weight:600;text-decoration:none;transition:all .2s;
+}
+.btn-hero.primary{
+  background:var(--teal);color:#fff;
+  box-shadow:0 4px 22px rgba(10,122,110,.48);
+}
+.btn-hero.primary:hover{background:var(--teal2);transform:translateY(-2px);box-shadow:0 8px 32px rgba(10,122,110,.55)}
+.btn-hero.ghost{
+  background:rgba(255,255,255,.06);color:rgba(255,255,255,.65);
+  border:1px solid rgba(255,255,255,.11);
+}
+.btn-hero.ghost:hover{background:rgba(255,255,255,.11);color:#fff}
+.hero-stats{
+  display:flex;gap:36px;
+  padding-top:32px;border-top:1px solid rgba(255,255,255,.09);
+}
+.hero-stat .n{
+  font-family:'DM Mono',monospace;font-size:1.9rem;
+  font-weight:500;color:#fff;line-height:1;margin-bottom:4px;
+}
+.hero-stat .l{
+  font-size:.66rem;font-weight:500;text-transform:uppercase;
+  letter-spacing:.11em;color:rgba(255,255,255,.3);
+}
+
+/* HERO VISUAL */
+.hero-visual{position:relative;height:480px}
+.doc-card{
+  position:absolute;border-radius:12px;padding:16px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+.dc-main{
+  width:320px;right:0;top:50%;transform:translateY(-50%);
+  background:rgba(13,26,50,.85);border:1px solid rgba(255,255,255,.12);
+  animation:floatA 5s ease-in-out infinite;
+}
+.dc-sm1{
+  width:218px;left:14px;top:52px;
+  background:rgba(8,18,38,.8);border:1px solid rgba(255,255,255,.09);
+  animation:floatB 6.2s ease-in-out infinite .7s;
+}
+.dc-sm2{
+  width:206px;left:30px;bottom:52px;
+  background:rgba(8,18,38,.8);border:1px solid rgba(255,255,255,.09);
+  animation:floatC 7.1s ease-in-out infinite 1.3s;
+}
+@keyframes floatA{0%,100%{transform:translateY(-50%) translateX(0)}50%{transform:translateY(calc(-50% - 10px)) translateX(5px)}}
+@keyframes floatB{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes floatC{0%,100%{transform:translateY(0)}50%{transform:translateY(9px)}}
+
+.dc-bar{display:flex;align-items:center;gap:5px;margin-bottom:12px}
+.dc-dot{width:8px;height:8px;border-radius:50%}
+.dc-titlebar{flex:1;height:5px;background:rgba(255,255,255,.07);border-radius:3px;margin-left:8px}
+.dc-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:.65rem;font-weight:600;
+  padding:2px 8px;border-radius:3px;margin-bottom:8px;
+  background:rgba(10,122,110,.2);color:var(--teal2);
+}
+.dc-folio{
+  font-family:'DM Mono',monospace;font-size:.68rem;
+  color:var(--amber2);background:rgba(232,146,10,.12);
+  padding:2px 8px;border-radius:3px;display:inline-block;margin-bottom:10px;
+}
+.dc-line{height:5px;background:rgba(255,255,255,.08);border-radius:3px;margin-bottom:5px}
+.dc-line.accent{background:rgba(10,122,110,.32)}
+.dc-lbl{font-size:.61rem;color:rgba(255,255,255,.26);margin-bottom:3px;font-family:'DM Mono',monospace}
+
+/* FORMS SECTION */
+.sec-dark{background:var(--ink);padding:92px 0;position:relative;overflow:hidden}
+.sec-dark::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:40px 40px;pointer-events:none;
+}
+.sec-wrap{max-width:1160px;margin:0 auto;padding:0 48px;position:relative;z-index:1}
+.tag-amber{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.68rem;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--amber2);margin-bottom:14px;
+}
+.tag-amber::before{content:'';width:18px;height:2px;background:var(--amber2);border-radius:1px}
+.tag-teal{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.68rem;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--teal2);margin-bottom:14px;
+}
+.tag-teal::before{content:'';width:18px;height:2px;background:var(--teal2);border-radius:1px}
+.sec-h{
+  font-family:'Playfair Display',serif;
+  font-size:2.4rem;line-height:1.16;margin-bottom:14px;
+}
+.sec-h.light{color:#fff}
+.sec-h.dark{color:var(--ink)}
+.sec-sub{font-size:.92rem;line-height:1.75;max-width:520px}
+.sec-sub.light{color:rgba(255,255,255,.44)}
+.sec-sub.dark{color:var(--muted)}
+
+.forms-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:52px}
+.form-card{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:13px;padding:22px;transition:all .22s;
+  cursor:pointer;text-decoration:none;display:block;position:relative;overflow:hidden;
+}
+.form-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .22s}
+.fc-pg::before{background:linear-gradient(135deg,rgba(91,47,138,.14),transparent)}
+.fc-sc::before{background:linear-gradient(135deg,rgba(26,122,74,.14),transparent)}
+.fc-pr::before{background:linear-gradient(135deg,rgba(184,92,10,.14),transparent)}
+.fc-oe::before{background:linear-gradient(135deg,rgba(27,95,168,.14),transparent)}
+.form-card:hover::before{opacity:1}
+.form-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.15);box-shadow:0 16px 48px rgba(0,0,0,.35)}
+.fc-ico{width:50px;height:50px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:14px}
+.fc-ico.pg{background:rgba(91,47,138,.2)}
+.fc-ico.sc{background:rgba(26,122,74,.2)}
+.fc-ico.pr{background:rgba(184,92,10,.2)}
+.fc-ico.oe{background:rgba(27,95,168,.2)}
+.fc-name{font-size:.9rem;font-weight:700;color:#fff;margin-bottom:6px}
+.fc-code{
+  font-family:'DM Mono',monospace;font-size:.66rem;
+  padding:2px 7px;border-radius:3px;display:inline-block;margin-bottom:11px;
+}
+.fc-code.pg{background:rgba(91,47,138,.22);color:#C49BE0}
+.fc-code.sc{background:rgba(26,122,74,.22);color:#7EC8A0}
+.fc-code.pr{background:rgba(184,92,10,.22);color:#F5B97A}
+.fc-code.oe{background:rgba(27,95,168,.22);color:#7AABF5}
+.fc-fields{font-size:.71rem;color:rgba(255,255,255,.36);line-height:1.8}
+.fc-fields code{
+  font-family:'DM Mono',monospace;font-size:.64rem;
+  background:rgba(255,255,255,.07);padding:1px 5px;border-radius:3px;color:rgba(255,255,255,.52);
+}
+.fc-arrow{
+  display:flex;align-items:center;justify-content:flex-end;
+  margin-top:14px;color:rgba(255,255,255,.22);font-size:.78rem;transition:all .2s;
+}
+.form-card:hover .fc-arrow{color:rgba(255,255,255,.65);transform:translateX(4px)}
+
+/* FEATURES */
+.sec-light{background:var(--cream);padding:92px 0}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:52px}
+.feat-card{
+  background:var(--white);border-radius:13px;padding:26px;
+  border:1px solid var(--border);transition:all .2s;
+  position:relative;overflow:hidden;
+}
+.feat-card::after{
+  content:'';position:absolute;left:0;top:0;width:3px;height:0;
+  background:var(--teal);transition:height .3s;
+}
+.feat-card:hover::after{height:100%}
+.feat-card:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(10,22,40,.09);border-color:transparent}
+.feat-ico{width:46px;height:46px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:14px}
+.feat-h{font-size:.9rem;font-weight:700;color:var(--ink);margin-bottom:7px}
+.feat-p{font-size:.79rem;color:var(--muted);line-height:1.72}
+.feat-pill{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:.63rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:2px 7px;border-radius:3px;margin-top:11px;
+}
+.fp-new{background:rgba(10,122,110,.1);color:var(--teal)}
+.fp-admin{background:rgba(91,47,138,.1);color:var(--purple)}
+
+/* ADMIN SECTION */
+.sec-navy{background:linear-gradient(135deg,var(--ink2) 0%,#1A3A6E 100%);padding:92px 0;position:relative;overflow:hidden}
+.sec-navy::after{
+  content:'ADMIN';
+  position:absolute;right:-30px;top:50%;transform:translateY(-50%) rotate(90deg);
+  font-family:'Playfair Display',serif;font-size:10rem;font-weight:800;
+  color:rgba(255,255,255,.022);letter-spacing:.08em;pointer-events:none;
+}
+.admin-layout{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.admin-list{margin-top:26px;display:flex;flex-direction:column;gap:11px}
+.admin-item{
+  display:flex;align-items:flex-start;gap:11px;
+  font-size:.84rem;color:rgba(255,255,255,.6);line-height:1.55;
+}
+.admin-check{
+  width:20px;height:20px;border-radius:50%;flex-shrink:0;margin-top:1px;
+  background:rgba(10,122,110,.22);color:var(--teal2);
+  display:flex;align-items:center;justify-content:center;font-size:.65rem;
+}
+.admin-panel{
+  background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.08);
+  border-radius:13px;overflow:hidden;
+}
+.ap-header{
+  background:rgba(0,0,0,.3);padding:11px 16px;
+  display:flex;align-items:center;gap:8px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.ap-title{font-size:.78rem;font-weight:600;color:#fff}
+.ap-badge{
+  font-size:.63rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  background:var(--amber);color:var(--ink);padding:2px 7px;border-radius:3px;
+  margin-left:auto;
+}
+.ap-body{padding:13px}
+.ap-row{
+  display:grid;grid-template-columns:100px 1fr 90px 80px;gap:8px;
+  padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05);
+  font-size:.71rem;color:rgba(255,255,255,.48);align-items:center;
+}
+.ap-row.hd{color:rgba(255,255,255,.22);font-size:.63rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase}
+.ap-folio{font-family:'DM Mono',monospace;color:var(--teal2);font-size:.68rem}
+.ap-status{font-size:.63rem;font-weight:700;padding:2px 7px;border-radius:3px;text-align:center}
+.aps-pend{background:rgba(232,146,10,.18);color:var(--amber2)}
+.aps-rev{background:rgba(91,47,138,.18);color:#C49BE0}
+.aps-done{background:rgba(26,122,74,.18);color:#7EC8A0}
+.ap-bottom{margin-top:11px;display:flex;gap:7px}
+.ap-chip{font-size:.63rem;padding:4px 10px;border-radius:4px}
+.apc-teal{background:rgba(10,122,110,.15);color:#0CBDAB;font-family:'DM Mono',monospace}
+.apc-ghost{background:rgba(255,255,255,.06);color:rgba(255,255,255,.34)}
+
+/* STEPS */
+.steps-wrap{padding:92px 48px;max-width:1160px;margin:0 auto}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:52px;position:relative}
+.steps-grid::before{
+  content:'';position:absolute;
+  top:27px;left:calc(12.5% + 14px);right:calc(12.5% + 14px);
+  height:1px;background:linear-gradient(90deg,var(--teal),var(--teal2),var(--teal));opacity:.35;
+}
+.step{text-align:center;padding:0 16px;position:relative}
+.step-n{
+  width:54px;height:54px;border-radius:50%;
+  background:linear-gradient(135deg,var(--teal),var(--teal2));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'DM Mono',monospace;font-size:1rem;font-weight:500;color:#fff;
+  margin:0 auto 16px;box-shadow:0 4px 20px rgba(10,122,110,.38);
+}
+.step-h{font-size:.87rem;font-weight:700;color:var(--ink);margin-bottom:7px}
+.step-p{font-size:.77rem;color:var(--muted);line-height:1.65}
+
+/* FINAL CTA */
+.final-cta{
+  background:var(--ink);padding:92px 48px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.final-cta::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+.final-cta::after{
+  content:'';position:absolute;width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(10,122,110,.14) 0%,transparent 70%);
+  left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;
+}
+.fci{position:relative;z-index:1}
+.fci h2{font-family:'Playfair Display',serif;font-size:2.6rem;color:#fff;margin-bottom:12px}
+.fci p{font-size:.92rem;color:rgba(255,255,255,.42);margin-bottom:34px}
+.fci-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* FOOTER */
+footer{
+  background:#060D1B;padding:32px 48px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;
+}
+.footer-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.footer-center{font-size:.73rem;color:rgba(255,255,255,.22);text-align:center;flex:1}
+.footer-mono{font-family:'DM Mono',monospace;font-size:.68rem;color:rgba(255,255,255,.16)}
+
+/* REVEAL ANIMATIONS */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* HERO ENTRANCE */
+.hero-copy > *{opacity:0;transform:translateY(18px);animation:hIn .65s ease forwards}
+.hero-copy > *:nth-child(1){animation-delay:.08s}
+.hero-copy > *:nth-child(2){animation-delay:.18s}
+.hero-copy > *:nth-child(3){animation-delay:.3s}
+.hero-copy > *:nth-child(4){animation-delay:.42s}
+.hero-copy > *:nth-child(5){animation-delay:.52s}
+@keyframes hIn{to{opacity:1;transform:none}}
+.hero-visual{opacity:0;animation:hVis .9s .38s forwards}
+@keyframes hVis{to{opacity:1}}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero-inner,.admin-layout{grid-template-columns:1fr}
+  .hero-visual,.sec-navy::after{display:none}
+  .forms-grid,.feat-grid{grid-template-columns:1fr 1fr}
+  .steps-grid{grid-template-columns:1fr 1fr}
+  .steps-grid::before{display:none}
+  .hero-h1{font-size:2.4rem}
+  .nav{padding:0 20px}
+}
+@media(max-width:540px){
+  .forms-grid,.feat-grid,.steps-grid{grid-template-columns:1fr}
+  .hero-h1{font-size:1.95rem}
+  .hero-stats{gap:20px}
+  .hero{padding:90px 20px 60px}
+  .steps-wrap,.final-cta{padding-left:20px;padding-right:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-logo" href="#">
+    <div class="nav-seal">C</div>
+    <div class="nav-name">CITRO <span>/ UV</span></div>
+  </a>
+  <div class="nav-links">
+    <a class="nav-link" href="#tramites">Formularios</a>
+    <a class="nav-link" href="#funciones">Funciones</a>
+    <a class="nav-link" href="#admin">Admin</a>
+    <a class="nav-link" href="#uso">Como usar</a>
+    <a class="nav-cta" href="CITRO_App_Final.html">Abrir sistema &rarr;</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-orb a"></div>
+  <div class="hero-orb b"></div>
+  <div class="hero-inner">
+
+    <div class="hero-copy">
+      <div class="hero-eyebrow">Centro de Investigaciones Tropicales &bull; Universidad Veracruzana</div>
+      <h1 class="hero-h1">Tramites<br>academicos<br><em>sin papel</em></h1>
+      <p class="hero-desc">
+        Sistema digital de solicitudes para estudiantes e investigadores del CITRO.
+        Folios automaticos, documentos en Google Drive y registro centralizado
+        para administradores en tiempo real.
+      </p>
+      <div class="hero-actions">
+        <a class="btn-hero primary" href="CITRO_App_Final.html">
+          &#8594; Abrir el sistema
+        </a>
+        <a class="btn-hero ghost" href="#uso">Como funciona</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="n">4</div><div class="l">Tipos de tramite</div></div>
+        <div class="hero-stat"><div class="n">&#9729;</div><div class="l">Drive + Sheets</div></div>
+        <div class="hero-stat"><div class="n">0</div><div class="l">Instalacion</div></div>
+      </div>
+    </div>
+
+    <!-- Floating cards visual -->
+    <div class="hero-visual" aria-hidden="true">
+      <!-- Main -->
+      <div class="doc-card dc-main">
+        <div class="dc-bar">
+          <div class="dc-dot" style="background:#ff5f56"></div>
+          <div class="dc-dot" style="background:#ffbd2e"></div>
+          <div class="dc-dot" style="background:#27c93f"></div>
+          <div class="dc-titlebar"></div>
+        </div>
+        <div class="dc-badge">&#127807; Salida de Campo</div>
+        <div class="dc-folio">SC-2025-012</div>
+        <div class="dc-lbl">[Lugares]</div>
+        <div style="font-size:.71rem;color:rgba(255,255,255,.55);margin-bottom:9px">Municipio de Las Vigas, Sierra de Chiconquiaco</div>
+        <div class="dc-lbl">[Actividades]</div>
+        <div class="dc-line accent"></div>
+        <div class="dc-line accent" style="width:70%"></div>
+        <div class="dc-lbl" style="margin-top:7px">[Fecha]</div>
+        <div class="dc-line" style="width:42%"></div>
+        <div style="margin-top:13px;display:flex;align-items:center;gap:7px">
+          <div style="width:7px;height:7px;border-radius:50%;background:#27c93f"></div>
+          <div style="font-size:.62rem;color:rgba(255,255,255,.28)">Guardado en Drive</div>
+          <div style="margin-left:auto;font-family:'DM Mono',monospace;font-size:.6rem;color:rgba(10,189,171,.65)">&#128196; Ver</div>
+        </div>
+      </div>
+      <!-- Small 1 -->
+      <div class="doc-card dc-sm1">
+        <div class="dc-badge" style="background:rgba(91,47,138,.2);color:#C49BE0;font-size:.61rem">&#128233; Peticion General</div>
+        <div class="dc-folio" style="color:#C49BE0;background:rgba(91,47,138,.15)">PG-2025-031</div>
+        <div class="dc-line" style="width:80%"></div>
+        <div class="dc-line" style="width:60%"></div>
+        <div class="dc-line" style="width:72%"></div>
+        <div style="margin-top:9px;display:flex;align-items:center;gap:5px">
+          <div style="font-size:.59rem;padding:2px 6px;border-radius:3px;background:rgba(232,146,10,.18);color:#FFB830">Pendiente</div>
+          <div style="font-size:.59rem;color:rgba(255,255,255,.18);margin-left:auto">hace 2h</div>
+        </div>
+      </div>
+      <!-- Small 2 -->
+      <div class="doc-card dc-sm2">
+        <div class="dc-badge" style="background:rgba(27,95,168,.2);color:#7AABF5;font-size:.61rem">&#127891; Org. Evento</div>
+        <div class="dc-folio" style="color:#7AABF5;background:rgba(27,95,168,.15)">OE-2025-007</div>
+        <div class="dc-line" style="width:88%"></div>
+        <div class="dc-line" style="width:52%"></div>
+        <div style="margin-top:9px;display:flex;align-items:center;gap:5px">
+          <div style="font-size:.59rem;padding:2px 6px;border-radius:3px;background:rgba(26,122,74,.18);color:#7EC8A0">Completado</div>
+          <div style="font-size:.59rem;color:rgba(255,255,255,.18);margin-left:auto">ayer</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FORM TYPES -->
+<div class="sec-dark" id="tramites">
+  <div class="sec-wrap">
+    <div class="reveal">
+      <div class="tag-amber">4 tipos de solicitud</div>
+      <h2 class="sec-h light">Cada tramite,<br>en su formato correcto</h2>
+      <p class="sec-sub light">Los campos corresponden exactamente a las plantillas oficiales CITRO/UV. Folio correlativo anual independiente por tipo.</p>
+    </div>
+    <div class="forms-grid">
+      <a class="form-card fc-pg reveal d1" href="CITRO_App_Final.html">
+        <div class="fc-ico pg">&#128233;</div>
+        <div class="fc-name">Peticion General</div>
+        <div class="fc-code pg">PG-YYYY-NNN</div>
+        <div class="fc-fields">Tipo &middot; Descripcion<br>Urgencia &middot; Adjuntos</div>
+        <div class="fc-arrow">Abrir &rarr;</div>
+      </a>
+      <a class="form-card fc-sc reveal d2" href="CITRO_App_Final.html">
+        <div class="fc-ico sc">&#127807;</div>
+        <div class="fc-name">Salida de Campo</div>
+        <div class="fc-code sc">SC-YYYY-NNN</div>
+        <div class="fc-fields"><code>[Nombre y grado]</code> <code>[Lugares]</code><br><code>[Actividades]</code> <code>[Fecha]</code></div>
+        <div class="fc-arrow">Abrir &rarr;</div>
+      </a>
+      <a class="form-card fc-pr reveal d3" href="CITRO_App_Final.html">
+        <div class="fc-ico pr">&#128230;</div>
+        <div class="fc-name">Peticion de Recursos</div>
+        <div class="fc-code pr">PR-YYYY-NNN</div>
+        <div class="fc-fields"><code>[Actividad]</code> <code>[Justificacion]</code><br><code>[Nombre]</code> <code>[Matricula]</code></div>
+        <div class="fc-arrow">Abrir &rarr;</div>
+      </a>
+      <a class="form-card fc-oe reveal d4" href="CITRO_App_Final.html">
+        <div class="fc-ico oe">&#127891;</div>
+        <div class="fc-name">Organizacion de Evento</div>
+        <div class="fc-code oe">OE-YYYY-NNN</div>
+        <div class="fc-fields"><code>[Evento]</code> <code>[Datos]</code> <code>[Monto]</code><br><code>[Numero]</code> <code>[Proyecto]</code> <code>[LGAC]</code></div>
+        <div class="fc-arrow">Abrir &rarr;</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="sec-light" id="funciones">
+  <div class="sec-wrap" style="position:relative;z-index:1">
+    <div class="reveal">
+      <div class="tag-teal">Funcionalidades</div>
+      <h2 class="sec-h dark">Un solo archivo.<br>Todo incluido.</h2>
+      <p class="sec-sub dark">Sin instalacion, sin servidor propio. Funciona en el navegador y sincroniza automaticamente con Google.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card reveal d1">
+        <div class="feat-ico" style="background:rgba(10,122,110,.08)">&#9729;&#65039;</div>
+        <div class="feat-h">Google Drive automatico</div>
+        <div class="feat-p">Cada solicitud guardada genera una copia del documento en Drive, organizada por tipo y ano. Enlace directo desde la tabla de tramites.</div>
+        <div class="feat-pill fp-new">Nuevo v3</div>
+      </div>
+      <div class="feat-card reveal d2">
+        <div class="feat-ico" style="background:rgba(26,122,74,.08)">&#128202;</div>
+        <div class="feat-h">Registro en Google Sheets</div>
+        <div class="feat-p">Cada tramite alimenta automaticamente la hoja central CITRO. Actualizada en tiempo real, visible desde cualquier dispositivo con acceso.</div>
+        <div class="feat-pill fp-new">Nuevo v3</div>
+      </div>
+      <div class="feat-card reveal d3">
+        <div class="feat-ico" style="background:rgba(91,47,138,.08)">&#128274;</div>
+        <div class="feat-h">Panel para administradores</div>
+        <div class="feat-p">Los correos autorizados ven todos los tramites de todos los usuarios, cambian estados y gestionan permisos sin tocar el codigo.</div>
+        <div class="feat-pill fp-admin">Solo admins</div>
+      </div>
+      <div class="feat-card reveal d1">
+        <div class="feat-ico" style="background:rgba(232,146,10,.08)">&#127991;&#65039;</div>
+        <div class="feat-h">Folios correlativos</div>
+        <div class="feat-p">Cada tipo genera su propia secuencia PG / SC / PR / OE. Numeracion anual automatica persistente entre sesiones del navegador.</div>
+      </div>
+      <div class="feat-card reveal d2">
+        <div class="feat-ico" style="background:rgba(27,95,168,.08)">&#128247;</div>
+        <div class="feat-h">Cartas listas para imprimir</div>
+        <div class="feat-p">El boton "Imprimir carta" genera el documento oficial completo con datos del solicitante, campos de la plantilla y espacio para firmas.</div>
+      </div>
+      <div class="feat-card reveal d3">
+        <div class="feat-ico" style="background:rgba(184,92,10,.08)">&#9993;&#65039;</div>
+        <div class="feat-h">Correo resumen diario</div>
+        <div class="feat-p">Administradores reciben automaticamente cada manana un resumen con tramites pendientes, completados y nuevos del dia anterior.</div>
+        <div class="feat-pill fp-admin">Solo admins</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div class="sec-navy" id="admin">
+  <div class="sec-wrap">
+    <div class="admin-layout">
+      <div class="reveal">
+        <div class="tag-amber">Panel de administracion</div>
+        <h2 class="sec-h light">Control total para<br>administradores CITRO</h2>
+        <p class="sec-sub light">Acceso exclusivo con inicio de sesion Google. Solo los correos autorizados acceden a esta seccion.</p>
+        <div class="admin-list">
+          <div class="admin-item"><div class="admin-check">&#10003;</div>Ver todos los tramites de todos los usuarios en una sola tabla</div>
+          <div class="admin-item"><div class="admin-check">&#10003;</div>Cambiar estado: Pendiente &rarr; En revision &rarr; Completado</div>
+          <div class="admin-item"><div class="admin-check">&#10003;</div>Abrir el documento en Drive directamente desde la tabla</div>
+          <div class="admin-item"><div class="admin-check">&#10003;</div>Agregar o quitar administradores sin modificar el codigo</div>
+          <div class="admin-item"><div class="admin-check">&#10003;</div>Exportar el registro completo a CSV con un clic</div>
+          <div class="admin-item"><div class="admin-check">&#10003;</div>Correo automatico diario con estadisticas a las 8 AM</div>
+        </div>
+      </div>
+      <div class="admin-panel reveal d2">
+        <div class="ap-header">
+          <div class="ap-title">&#128274; Panel de Administracion</div>
+          <div class="ap-badge">ADMIN</div>
+        </div>
+        <div class="ap-body">
+          <div class="ap-row hd"><span>Folio</span><span>Solicitante</span><span>Tipo</span><span>Estado</span></div>
+          <div class="ap-row">
+            <span class="ap-folio">PG-2025-031</span>
+            <span>Garcia, A.</span>
+            <span style="font-size:.69rem">&#128233; Peticion</span>
+            <span class="ap-status aps-pend">Pendiente</span>
+          </div>
+          <div class="ap-row">
+            <span class="ap-folio">SC-2025-012</span>
+            <span>Torres, M.</span>
+            <span style="font-size:.69rem">&#127807; Salida</span>
+            <span class="ap-status aps-rev">Revision</span>
+          </div>
+          <div class="ap-row">
+            <span class="ap-folio">OE-2025-007</span>
+            <span>Lopez, C.</span>
+            <span style="font-size:.69rem">&#127891; Evento</span>
+            <span class="ap-status aps-done">Completado</span>
+          </div>
+          <div class="ap-row">
+            <span class="ap-folio">PR-2025-019</span>
+            <span>Reyes, S.</span>
+            <span style="font-size:.69rem">&#128230; Recursos</span>
+            <span class="ap-status aps-pend">Pendiente</span>
+          </div>
+          <div class="ap-bottom">
+            <div class="ap-chip apc-teal">4 registros hoy</div>
+            <div class="ap-chip apc-ghost">&#8659; Exportar CSV</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="steps-wrap" id="uso">
+  <div class="reveal">
+    <div class="tag-teal">Como funciona</div>
+    <h2 class="sec-h dark">De la solicitud<br>al archivo en 4 pasos</h2>
+    <p class="sec-sub dark">Sin cuentas adicionales. Solo inicie sesion con su cuenta Google o UV existente.</p>
+  </div>
+  <div class="steps-grid">
+    <div class="step reveal d1">
+      <div class="step-n">01</div>
+      <div class="step-h">Inicie sesion</div>
+      <p class="step-p">Use su cuenta Google o UV. El sistema verifica si tiene permisos de administrador automaticamente.</p>
+    </div>
+    <div class="step reveal d2">
+      <div class="step-n">02</div>
+      <div class="step-h">Elija el tramite</div>
+      <p class="step-p">Seleccione entre Peticion General, Salida de Campo, Peticion de Recursos u Organizacion de Evento.</p>
+    </div>
+    <div class="step reveal d3">
+      <div class="step-n">03</div>
+      <div class="step-h">Complete y envie</div>
+      <p class="step-p">Llene los campos obligatorios. Al enviar se asigna el folio y se guarda en Drive y en Sheets.</p>
+    </div>
+    <div class="step reveal d4">
+      <div class="step-n">04</div>
+      <div class="step-h">Imprima la carta</div>
+      <p class="step-p">Use "Imprimir carta" para obtener el documento oficial listo para firmar y entregar a la Direccion CITRO.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <div class="fci">
+    <h2>Listo para usar ahora mismo</h2>
+    <p>Sin instalacion. Sin configuracion previa para los usuarios. Solo abrir y trabajar.</p>
+    <div class="fci-btns">
+      <a class="btn-hero primary" href="CITRO_App_Final.html" style="font-size:.92rem;padding:14px 30px">
+        &#8594; Abrir CITRO-Formularios
+      </a>
+      <a class="btn-hero ghost" href="SETUP_Google.md" style="font-size:.84rem">
+        &#128196; Guia Drive + Sheets
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a class="footer-brand" href="#">
+    <div class="nav-seal">C</div>
+    <span style="font-size:.8rem;color:rgba(255,255,255,.3);font-weight:500">CITRO-Formularios v3.0</span>
+  </a>
+  <div class="footer-center">Centro de Investigaciones Tropicales &bull; Universidad Veracruzana &bull; Xalapa, Ver.</div>
+  <div class="footer-mono">2025</div>
+</footer>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
+  });
+}, { threshold:0.1, rootMargin:'0px 0px -36px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Active nav link
+const secs = [...document.querySelectorAll('[id]')];
+const links = [...document.querySelectorAll('.nav-link')];
+window.addEventListener('scroll', () => {
+  const y = window.scrollY + 80;
+  secs.forEach(s => {
+    if(y >= s.offsetTop && y < s.offsetTop + s.offsetHeight) {
+      links.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#'+s.id
+          ? 'rgba(255,255,255,.92)' : '';
+      });
+    }
+  });
+}, { passive:true });
+</script>
+</body>
+</html>
