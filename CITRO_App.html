@@ -262,9 +262,168 @@ tbody td{padding:9px 12px;font-size:.8rem;vertical-align:middle}
 .cloud-status.on{background:#D4EDDA;color:var(--green)}
 .cloud-status.off{background:var(--surf);color:var(--muted)}
 .cloud-status.syncing{background:#FFF3CD;color:var(--amber)}
+
+/* ── ADJUNTOS ── */
+.attach-section-wrap{
+  background:rgba(10,122,110,.04);border:1px solid rgba(10,122,110,.18);
+  border-radius:var(--r2);padding:16px;margin-top:2px;
+}
+.attach-section-head{
+  display:flex;align-items:center;gap:8px;
+  font-size:.82rem;font-weight:600;color:var(--teal);margin-bottom:12px;
+}
+.attach-zone{
+  border:2px dashed var(--border);border-radius:var(--r);
+  padding:18px 14px;text-align:center;cursor:pointer;
+  transition:.2s;background:var(--white);position:relative;
+}
+.attach-zone:hover,.attach-zone.drag-over{border-color:var(--teal);background:rgba(10,122,110,.04)}
+.attach-zone input[type=file]{
+  position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;
+}
+.attach-zone-ico{font-size:1.5rem;margin-bottom:4px}
+.attach-zone-txt{font-size:.78rem;color:var(--muted);line-height:1.5}
+.attach-zone-txt b{color:var(--teal)}
+.attach-list{margin-top:10px;display:flex;flex-direction:column;gap:5px}
+.attach-item{
+  display:flex;align-items:center;gap:7px;
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--r);padding:7px 10px;
+}
+.attach-item-name{flex:1;font-size:.78rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.attach-item-sz{font-size:.68rem;color:var(--muted);font-family:'IBM Plex Mono',monospace;flex-shrink:0}
+.attach-item-rm{
+  width:20px;height:20px;border-radius:50%;border:none;
+  background:rgba(192,57,43,.1);color:var(--red);cursor:pointer;
+  font-size:.72rem;flex-shrink:0;transition:.15s;
+}
+.attach-item-rm:hover{background:rgba(192,57,43,.2)}
+
+/* ── ACUSE DE RECIBO ── */
+.acuse-overlay{
+  position:fixed;inset:0;z-index:10000;
+  background:rgba(7,17,31,.85);backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.acuse-overlay.show{opacity:1;pointer-events:all}
+.acuse-box{
+  background:var(--white);border-radius:20px;
+  max-width:540px;width:92%;
+  box-shadow:0 32px 80px rgba(0,0,0,.45);
+  transform:translateY(30px) scale(.96);
+  transition:transform .4s cubic-bezier(.34,1.56,.64,1);
+  overflow:hidden;
+}
+.acuse-overlay.show .acuse-box{transform:none}
+.acuse-top{
+  background:linear-gradient(140deg,#0D1F3C 0%,#1A3A6E 100%);
+  padding:28px 32px 22px;position:relative;overflow:hidden;text-align:center;
+}
+.acuse-top::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(255,255,255,.1) 1px,transparent 1px);
+  background-size:22px 22px;opacity:.35;pointer-events:none;
+}
+.acuse-check{
+  width:68px;height:68px;border-radius:50%;
+  background:rgba(26,122,74,.2);border:3px solid rgba(26,122,74,.45);
+  display:flex;align-items:center;justify-content:center;
+  font-size:2rem;margin:0 auto 14px;position:relative;z-index:1;
+  animation:checkPop .5s .1s both cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes checkPop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.acuse-ttl{
+  font-size:1.22rem;font-weight:700;color:#fff;
+  margin-bottom:4px;position:relative;z-index:1;
+}
+.acuse-sub{font-size:.78rem;color:rgba(255,255,255,.48);position:relative;z-index:1;}
+.acuse-body{padding:22px 28px 4px}
+.acuse-folio-block{
+  text-align:center;
+  background:linear-gradient(135deg,rgba(10,122,110,.07),rgba(10,122,110,.03));
+  border:1px solid rgba(10,122,110,.22);border-radius:var(--r2);
+  padding:14px;margin-bottom:16px;
+}
+.acuse-folio-num{
+  font-family:'IBM Plex Mono',monospace;font-size:1.5rem;
+  font-weight:700;color:var(--teal);letter-spacing:.04em;
+}
+.acuse-folio-lbl{font-size:.7rem;color:var(--muted);margin-top:3px}
+.acuse-rows{display:flex;flex-direction:column;gap:0}
+.acuse-row{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  padding:8px 0;border-bottom:1px solid var(--surf2);gap:12px;
+}
+.acuse-row:last-child{border:none}
+.acuse-row .k{font-size:.78rem;color:var(--muted);font-weight:500;flex-shrink:0}
+.acuse-row .v{
+  font-size:.78rem;font-weight:600;color:var(--text);
+  text-align:right;word-break:break-word;
+}
+.acuse-email-box{
+  display:flex;gap:9px;
+  background:rgba(27,95,168,.05);border:1px solid rgba(27,95,168,.18);
+  border-radius:var(--r);padding:11px 13px;margin:14px 0 6px;
+  font-size:.78rem;line-height:1.55;color:var(--text);
+}
+.acuse-email-box .ico{font-size:1rem;flex-shrink:0;margin-top:1px}
+.acuse-adj-box{
+  display:flex;gap:9px;
+  background:rgba(26,122,74,.04);border:1px solid rgba(26,122,74,.18);
+  border-radius:var(--r);padding:10px 13px;margin-bottom:14px;
+  font-size:.78rem;line-height:1.5;color:var(--text);
+}
+.acuse-btns{
+  padding:12px 28px 22px;
+  display:flex;gap:9px;flex-wrap:wrap;
+}
+.acuse-btns .btn{flex:1;min-width:120px;justify-content:center}
+.acuse-ts{
+  text-align:center;font-size:.67rem;color:var(--light);
+  padding:0 28px 14px;font-family:'IBM Plex Mono',monospace;
+}
 </style>
 </head>
 <body>
+
+<!-- ═══ ACUSE DE RECIBO ═══ -->
+<div class="acuse-overlay" id="acuse-overlay">
+  <div class="acuse-box">
+    <div class="acuse-top">
+      <div class="acuse-check">&#10003;</div>
+      <div class="acuse-ttl">Tramite enviado con exito</div>
+      <div class="acuse-sub">Acuse de recibo - CITRO / Universidad Veracruzana</div>
+    </div>
+    <div class="acuse-body">
+      <div class="acuse-folio-block">
+        <div class="acuse-folio-num" id="acuse-folio-num">--</div>
+        <div class="acuse-folio-lbl">Numero de folio asignado</div>
+      </div>
+      <div class="acuse-rows">
+        <div class="acuse-row"><span class="k">Tipo de tramite</span><span class="v" id="acuse-tipo">--</span></div>
+        <div class="acuse-row"><span class="k">Solicitante</span><span class="v" id="acuse-solicitante">--</span></div>
+        <div class="acuse-row"><span class="k">Matricula UV</span><span class="v" id="acuse-matricula">--</span></div>
+        <div class="acuse-row"><span class="k">Fecha de registro</span><span class="v" id="acuse-fecha">--</span></div>
+        <div class="acuse-row"><span class="k">Archivos adjuntos</span><span class="v" id="acuse-adjuntos">Ninguno</span></div>
+      </div>
+      <div class="acuse-email-box">
+        <span class="ico">&#128231;</span>
+        <span>Se ha enviado una copia del formulario y los adjuntos a <strong>CtTramites2026</strong> para su proceso administrativo. Conserve este numero de folio como comprobante.</span>
+      </div>
+      <div class="acuse-adj-box" id="acuse-adj-box" style="display:none">
+        <span>&#128206;</span>
+        <span id="acuse-adj-lista"></span>
+      </div>
+    </div>
+    <div class="acuse-btns">
+      <button class="btn btn-primary" onclick="acuseImprimir()">&#128247; Imprimir acuse</button>
+      <button class="btn btn-secondary" onclick="acuseNuevo()">+ Nuevo tramite</button>
+      <button class="btn btn-ghost" onclick="cerrarAcuse()">Cerrar</button>
+    </div>
+    <div class="acuse-ts" id="acuse-ts"></div>
+  </div>
+</div>
 
 <!-- ═══════════════════════════════════════════════
      LOGIN OVERLAY
@@ -459,9 +618,24 @@ tbody td{padding:9px 12px;font-size:.8rem;vertical-align:middle}
               <div class="field col2"><label>Documentos adjuntos</label><input type="text" id="pg-adjuntos" placeholder="Archivos separados por coma"/></div>
               <div class="field col2"><label>Observaciones adicionales</label><textarea id="pg-obs" rows="2" placeholder="Información complementaria…"></textarea></div>
             </div></div></div>
-            <div id="pg-alert" class="alert alert-success"><span>✓</span><span id="pg-alert-msg"></span></div>
+            <div id="pg-alert" class="alert alert-success"><span>&#10003;</span><span id="pg-alert-msg"></span></div>
+            <!-- ADJUNTOS PG -->
+            <div class="section-block">
+              <div class="section-head"><span class="section-tag" style="background:var(--teal)">03</span><h4>Documentos Adjuntos</h4><span style="font-size:.72rem;color:var(--muted);margin-left:8px">Opcional - Se enviaran junto con el formulario</span></div>
+              <div class="section-body">
+                <div class="attach-section-wrap">
+                  <div class="attach-section-head">&#128206; Arrastra archivos o haz clic para seleccionar</div>
+                  <div class="attach-zone" id="az-pg" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')" ondrop="handleDrop(event,'pg')">
+                    <input type="file" id="af-pg" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.xlsx,.xls" onchange="handleFiles(this.files,'pg')"/>
+                    <div class="attach-zone-ico">&#128196;</div>
+                    <div class="attach-zone-txt">PDF, Word, Excel, Imagenes<br><b>Hasta 10 MB por archivo</b></div>
+                  </div>
+                  <div class="attach-list" id="al-pg"></div>
+                </div>
+              </div>
+            </div>
             <div style="display:flex;gap:8px;flex-wrap:wrap">
-              <button class="btn btn-primary" id="btn-submit-pg" onclick="submitForm('pg')">⬇ Registrar + Guardar en Drive</button>
+              <button class="btn btn-primary" id="btn-submit-pg" onclick="submitForm('pg')">&#8595; Registrar + Enviar</button>
               <button class="btn btn-secondary" onclick="resetForm('pg')">↺ Limpiar</button>
               <button class="btn btn-ghost" onclick="printForm('pg')">🖨 Imprimir carta</button>
             </div>
@@ -494,9 +668,24 @@ tbody td{padding:9px 12px;font-size:.8rem;vertical-align:middle}
               <div class="field"><label>N.° de participantes</label><input type="number" id="sc-participantes" placeholder="4" min="1"/></div>
               <div class="field"><label>Vehículo / Transporte</label><input type="text" id="sc-transporte" placeholder="Vehículo institucional"/></div>
             </div></div></div>
-            <div id="sc-alert" class="alert alert-success"><span>✓</span><span id="sc-alert-msg"></span></div>
+            <div id="sc-alert" class="alert alert-success"><span>&#10003;</span><span id="sc-alert-msg"></span></div>
+            <!-- ADJUNTOS SC -->
+            <div class="section-block">
+              <div class="section-head"><span class="section-tag" style="background:var(--teal)">03</span><h4>Documentos Adjuntos</h4><span style="font-size:.72rem;color:var(--muted);margin-left:8px">Opcional</span></div>
+              <div class="section-body">
+                <div class="attach-section-wrap">
+                  <div class="attach-section-head">&#128206; Arrastra archivos o haz clic para seleccionar</div>
+                  <div class="attach-zone" id="az-sc" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')" ondrop="handleDrop(event,'sc')">
+                    <input type="file" id="af-sc" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.xlsx,.xls" onchange="handleFiles(this.files,'sc')"/>
+                    <div class="attach-zone-ico">&#128196;</div>
+                    <div class="attach-zone-txt">PDF, Word, Excel, Imagenes<br><b>Hasta 10 MB por archivo</b></div>
+                  </div>
+                  <div class="attach-list" id="al-sc"></div>
+                </div>
+              </div>
+            </div>
             <div style="display:flex;gap:8px;flex-wrap:wrap">
-              <button class="btn btn-primary" id="btn-submit-sc" onclick="submitForm('sc')">⬇ Registrar + Guardar en Drive</button>
+              <button class="btn btn-primary" id="btn-submit-sc" onclick="submitForm('sc')">&#8595; Registrar + Enviar</button>
               <button class="btn btn-secondary" onclick="resetForm('sc')">↺ Limpiar</button>
               <button class="btn btn-ghost" onclick="printForm('sc')">🖨 Imprimir carta</button>
             </div>
@@ -527,9 +716,24 @@ tbody td{padding:9px 12px;font-size:.8rem;vertical-align:middle}
               <div class="field"><label>Proyecto / Cuenta asociada</label><input type="text" id="pr-proyecto" placeholder="Clave del proyecto"/></div>
               <div class="field"><label>Fecha requerida<span class="req">*</span></label><input type="date" id="pr-fecha"/></div>
             </div></div></div>
-            <div id="pr-alert" class="alert alert-success"><span>✓</span><span id="pr-alert-msg"></span></div>
+            <div id="pr-alert" class="alert alert-success"><span>&#10003;</span><span id="pr-alert-msg"></span></div>
+            <!-- ADJUNTOS PR -->
+            <div class="section-block">
+              <div class="section-head"><span class="section-tag" style="background:var(--teal)">04</span><h4>Documentos Adjuntos</h4><span style="font-size:.72rem;color:var(--muted);margin-left:8px">Opcional</span></div>
+              <div class="section-body">
+                <div class="attach-section-wrap">
+                  <div class="attach-section-head">&#128206; Arrastra archivos o haz clic para seleccionar</div>
+                  <div class="attach-zone" id="az-pr" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')" ondrop="handleDrop(event,'pr')">
+                    <input type="file" id="af-pr" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.xlsx,.xls" onchange="handleFiles(this.files,'pr')"/>
+                    <div class="attach-zone-ico">&#128196;</div>
+                    <div class="attach-zone-txt">PDF, Word, Excel, Imagenes<br><b>Hasta 10 MB por archivo</b></div>
+                  </div>
+                  <div class="attach-list" id="al-pr"></div>
+                </div>
+              </div>
+            </div>
             <div style="display:flex;gap:8px;flex-wrap:wrap">
-              <button class="btn btn-primary" id="btn-submit-pr" onclick="submitForm('pr')">⬇ Registrar + Guardar en Drive</button>
+              <button class="btn btn-primary" id="btn-submit-pr" onclick="submitForm('pr')">&#8595; Registrar + Enviar</button>
               <button class="btn btn-secondary" onclick="resetForm('pr')">↺ Limpiar</button>
               <button class="btn btn-ghost" onclick="printForm('pr')">🖨 Imprimir</button>
             </div>
@@ -561,9 +765,24 @@ tbody td{padding:9px 12px;font-size:.8rem;vertical-align:middle}
               <div class="field full"><label>Proyecto asociado <span class="hint-tag">[Proyecto]</span><span class="req">*</span></label><input type="text" id="oe-proyecto" placeholder="Clave o nombre del proyecto de investigación vinculado al evento"/></div>
               <div class="field full"><label>Impacto en LGAC / PLADEA <span class="hint-tag">[Descripción]</span><span class="req">*</span></label><textarea id="oe-lgac" rows="4" placeholder="Relación con las LGAC y el PLADEA de la entidad académica…"></textarea></div>
             </div></div></div>
-            <div id="oe-alert" class="alert alert-success"><span>✓</span><span id="oe-alert-msg"></span></div>
+            <div id="oe-alert" class="alert alert-success"><span>&#10003;</span><span id="oe-alert-msg"></span></div>
+            <!-- ADJUNTOS OE -->
+            <div class="section-block">
+              <div class="section-head"><span class="section-tag" style="background:var(--teal)">03</span><h4>Documentos Adjuntos</h4><span style="font-size:.72rem;color:var(--muted);margin-left:8px">Opcional</span></div>
+              <div class="section-body">
+                <div class="attach-section-wrap">
+                  <div class="attach-section-head">&#128206; Arrastra archivos o haz clic para seleccionar</div>
+                  <div class="attach-zone" id="az-oe" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')" ondrop="handleDrop(event,'oe')">
+                    <input type="file" id="af-oe" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.xlsx,.xls" onchange="handleFiles(this.files,'oe')"/>
+                    <div class="attach-zone-ico">&#128196;</div>
+                    <div class="attach-zone-txt">PDF, Word, Excel, Imagenes<br><b>Hasta 10 MB por archivo</b></div>
+                  </div>
+                  <div class="attach-list" id="al-oe"></div>
+                </div>
+              </div>
+            </div>
             <div style="display:flex;gap:8px;flex-wrap:wrap">
-              <button class="btn btn-primary" id="btn-submit-oe" onclick="submitForm('oe')">⬇ Registrar + Guardar en Drive</button>
+              <button class="btn btn-primary" id="btn-submit-oe" onclick="submitForm('oe')">&#8595; Registrar + Enviar</button>
               <button class="btn btn-secondary" onclick="resetForm('oe')">↺ Limpiar</button>
               <button class="btn btn-ghost" onclick="printForm('oe')">🖨 Imprimir carta</button>
             </div>
@@ -699,15 +918,15 @@ tbody td{padding:9px 12px;font-size:.8rem;vertical-align:middle}
 </div><!-- /main -->
 
 <script>
-// ════════════════════════════════════════════════════════════
+// ============================================================
 //  CONFIGURACIÓN - editar si no se usa el panel de Config
-// ════════════════════════════════════════════════════════════
+// ============================================================
 const DEFAULT_GAS_URL = ''; // pegar URL del Web App aquí
 const DEFAULT_SECRET  = 'citro-uv-2025-secret';
 
-// ════════════════════════════════════════════════════════════
+// ============================================================
 //  ESTADO
-// ════════════════════════════════════════════════════════════
+// ============================================================
 const STORAGE_KEY    = 'citro_tramites_v3';
 const FOLIO_KEY      = 'citro_folios_v3';
 const CFG_KEY        = 'citro_config_v3';
@@ -733,9 +952,9 @@ const TYPE_PREFIXES = {pg:'PG',sc:'SC',pr:'PR',oe:'OE'};
 const TYPE_COLORS   = {pg:'var(--purple)',sc:'var(--green)',pr:'var(--orange)',oe:'var(--blue)'};
 const TYPE_ICONS    = {pg:'📩',sc:'🌿',pr:'📦',oe:'🎓'};
 
-// ════════════════════════════════════════════════════════════
+// ============================================================
 //  GOOGLE SIGN-IN
-// ════════════════════════════════════════════════════════════
+// ============================================================
 const GOOGLE_CLIENT_ID = cfg.googleClientId || 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com';
 
 function initGoogleSignIn() {
@@ -791,7 +1010,7 @@ async function checkAdminStatus(user) {
   try {
     const r = await fetch(`${gasUrl}?action=tramites&email=${encodeURIComponent(user.email)}&secret=${encodeURIComponent(secret)}`);
     const j = await r.json();
-    user.isAdmin = j.ok !== false; // If access granted → admin
+    user.isAdmin = j.ok !== false; // If access granted -> admin
     if(user.isAdmin) isOnline = true;
   } catch {
     user.isAdmin = false;
@@ -855,15 +1074,15 @@ function setSyncStatus(state, label) {
   lbl.textContent = label;
 }
 
-// ════════════════════════════════════════════════════════════
+// ============================================================
 //  DRIVE + SHEETS - llamadas al backend GAS
-// ════════════════════════════════════════════════════════════
+// ============================================================
 async function syncToDrive(record) {
   const gasUrl = cfg.gasUrl || DEFAULT_GAS_URL;
   const secret = cfg.secret || DEFAULT_SECRET;
   if(!gasUrl) return { ok: false, skipped: true };
 
-  setSyncStatus('pending', 'Sincronizando…');
+  setSyncStatus('pending', 'Sincronizando...');
   try {
     const r = await fetch(gasUrl, {
       method: 'POST',
@@ -938,15 +1157,15 @@ async function refreshAdminData(force=false) {
   }
 }
 
-// ════════════════════════════════════════════════════════════
+// ============================================================
 //  NAVEGACIÓN
-// ════════════════════════════════════════════════════════════
+// ============================================================
 const SCREEN_TITLES = {
   's-inicio':   ['🏠 Inicio','Panel de control'],
   's-tramites': ['📋 Mis Trámites','Historial completo'],
   's-form':     ['📝 Nueva Solicitud','Formularios CITRO'],
   's-admin':    ['🔐 Panel de Administración','Solo administradores'],
-  's-config':   ['⚙️ Configuración','Ajustes del sistema'],
+  's-config':   [' Configuración','Ajustes del sistema'],
 };
 
 function nav(el) {
@@ -992,16 +1211,16 @@ function switchForm(type, tabEl) {
   updateFolioPreview(type);
 }
 
-// ════════════════════════════════════════════════════════════
+// ============================================================
 //  FOLIO
-// ════════════════════════════════════════════════════════════
+// ============================================================
 function previewFolio(type){ const p=TYPE_PREFIXES[type]; return `${p}-${new Date().getFullYear()}-${String((folios[p]||0)+1).padStart(3,'0')}`; }
 function assignFolio(type){ const p=TYPE_PREFIXES[type]; folios[p]=(folios[p]||0)+1; saveFolios(folios); return `${p}-${new Date().getFullYear()}-${String(folios[p]).padStart(3,'0')}`; }
 function updateFolioPreview(type){ const f=previewFolio(type); ['hdr','sb'].forEach(s=>{ const el=document.getElementById(`${type}-folio-${s}`); if(el) el.textContent=f; }); }
 
-// ════════════════════════════════════════════════════════════
+// ============================================================
 //  SUBMIT
-// ════════════════════════════════════════════════════════════
+// ============================================================
 const FORM_REQUIRED = {
   pg:['pg-apellidos','pg-nombres','pg-matricula','pg-correo','pg-programa','pg-tipo','pg-descripcion','pg-fecha'],
   sc:['sc-apellidos','sc-nombres','sc-grado','sc-matricula','sc-correo','sc-lugares','sc-actividades','sc-fecha-salida','sc-fecha-regreso'],
@@ -1020,48 +1239,244 @@ function buildRecord(type, folio) {
   if(type==='oe') return{...base,nombre_evento:g('oe-nombre'),fecha_evento:g('oe-fecha'),sede:g('oe-sede'),presupuesto:g('oe-presupuesto'),asistentes:g('oe-asistentes'),proyecto:g('oe-proyecto'),lgac:g('oe-lgac')};
 }
 
+// ============================================================
+//  ADJUNTOS
+// ============================================================
+var attachedFiles = { pg:[], sc:[], pr:[], oe:[] };
+
+function fmtSize(bytes){
+  if(bytes<1024) return bytes+'B';
+  if(bytes<1048576) return (bytes/1024).toFixed(0)+'KB';
+  return (bytes/1048576).toFixed(1)+'MB';
+}
+
+function fileIcon(name){
+  var ext=(name.split('.').pop()||'').toLowerCase();
+  if(['pdf'].includes(ext)) return '&#128196;';
+  if(['doc','docx'].includes(ext)) return '&#128196;';
+  if(['xls','xlsx'].includes(ext)) return '&#128202;';
+  if(['jpg','jpeg','png','gif'].includes(ext)) return '&#128247;';
+  return '&#128196;';
+}
+
+function renderAttachList(type){
+  var list=document.getElementById('al-'+type);
+  if(!list) return;
+  list.innerHTML='';
+  attachedFiles[type].forEach(function(f,i){
+    var item=document.createElement('div');
+    item.className='attach-item';
+    item.innerHTML=fileIcon(f.name)+'&nbsp;<span class="attach-item-name">'+f.name+'</span><span class="attach-item-sz">'+fmtSize(f.size)+'</span><button class="attach-item-rm" onclick="removeFile(\''+type+'\','+i+')" title="Quitar">&#10005;</button>';
+    list.appendChild(item);
+  });
+}
+
+function handleFiles(files, type){
+  var maxBytes=10*1024*1024;
+  Array.from(files).forEach(function(f){
+    if(f.size>maxBytes){ alert('El archivo "'+f.name+'" supera 10 MB y no se adjunto.'); return; }
+    if(attachedFiles[type].length>=8){ alert('Maximo 8 archivos por tramite.'); return; }
+    attachedFiles[type].push(f);
+  });
+  renderAttachList(type);
+  // reset input so same file can be re-added after removal
+  var inp=document.getElementById('af-'+type);
+  if(inp) inp.value='';
+}
+
+function handleDrop(event, type){
+  event.preventDefault();
+  var az=document.getElementById('az-'+type);
+  if(az) az.classList.remove('drag-over');
+  handleFiles(event.dataTransfer.files, type);
+}
+
+function removeFile(type, idx){
+  attachedFiles[type].splice(idx,1);
+  renderAttachList(type);
+}
+
+// ============================================================
+//  EMAIL  (via GAS backend o mailto fallback)
+// ============================================================
+var CITRO_EMAIL = '5f11d725.uvmx.onmicrosoft.com@amer.teams.ms';
+
+function buildEmailBody(record, type){
+  var lines=[
+    'CITRO - ACUSE DE TRAMITE',
+    '========================',
+    'Folio: '+record.folio,
+    'Tipo: '+record.label,
+    'Solicitante: '+record.apellidos+', '+record.nombres,
+    'Matricula: '+record.matricula,
+    'Correo: '+(record.correo||''),
+    'Fecha de registro: '+new Date(record.fecha).toLocaleString('es-MX'),
+    '',
+  ];
+  if(type==='pg') lines.push('Tipo peticion: '+(record.tipo||''),'Urgencia: '+(record.urgencia||''),'Descripcion:',record.descripcion||'');
+  else if(type==='sc') lines.push('Lugares: '+(record.lugares||''),'Actividades: '+(record.actividades||''),'Fecha salida: '+(record.fecha_salida||''),'Fecha regreso: '+(record.fecha_regreso||''));
+  else if(type==='pr') lines.push('Actividad: '+(record.actividad||''),'Justificacion: '+(record.justificacion||''),'Tipo recurso: '+(record.tipo_recurso||''),'Monto: '+(record.monto||''));
+  else if(type==='oe') lines.push('Evento: '+(record.nombre_evento||''),'Fecha: '+(record.fecha_evento||''),'Sede: '+(record.sede||''),'Presupuesto: '+(record.presupuesto||''),'Asistentes: '+(record.asistentes||''));
+  lines.push('','---','CITRO-Formularios v3.0 | Universidad Veracruzana');
+  return lines.join('\n');
+}
+
+function buildPrintHTML(record, type){
+  var today=new Date().toLocaleDateString('es-MX',{day:'numeric',month:'long',year:'numeric'});
+  var folio=record.folio;
+  var TYPE_COLORS_HEX={pg:'#5B2F8A',sc:'#1A7A4A',pr:'#B85C0A',oe:'#1B5FA8'};
+  var color=TYPE_COLORS_HEX[type]||'#0A7A6E';
+  var header='<div style="text-align:center;border-bottom:2px solid #0D1F3C;padding-bottom:12px;margin-bottom:16px"><div style="font-size:9pt;text-transform:uppercase;letter-spacing:.1em;color:#5A6880">Centro de Investigaciones Tropicales</div><div style="font-size:16pt;font-weight:bold;color:#0D1F3C">UNIVERSIDAD VERACRUZANA</div><div style="font-size:9pt;color:#5A6880">'+(cfg.inst||'')+' - Xalapa, Veracruz - '+today+'</div></div>';
+  var firma='<div style="margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:32px"><div style="text-align:center"><div style="border-top:1px solid #333;padding-top:6px;font-size:9pt">Firma del solicitante<br><span style="color:#5A6880">'+record.apellidos+', '+record.nombres+' - '+record.matricula+'</span></div></div><div style="text-align:center"><div style="border-top:1px solid #333;padding-top:6px;font-size:9pt">Vo.Bo. Direccion CITRO'+(cfg.director?'<br><span style="color:#5A6880">'+cfg.director+'</span>':'')+'</div></div></div><div style="margin-top:16px;text-align:center;font-size:8pt;color:#9AA5B4;border-top:1px solid #eee;padding-top:8px">CITRO-Formularios v3.0 - Folio <strong style="color:'+color+'">'+folio+'</strong></div>';
+  var body='';
+  if(type==='pg') body='<p><strong>Tipo:</strong> '+(record.tipo||'')+'</p><p><strong>Urgencia:</strong> '+(record.urgencia||'')+'</p><p><strong>Descripcion:</strong></p><p>'+(record.descripcion||'')+'</p>'+(record.obs?'<p><strong>Observaciones:</strong> '+record.obs+'</p>':'')+(record.adjuntos?'<p><strong>Adjuntos:</strong> '+record.adjuntos+'</p>':'');
+  else if(type==='sc') body='<p><strong>Lugar(es):</strong></p><p>'+(record.lugares||'')+'</p><p><strong>Actividades:</strong></p><p>'+(record.actividades||'')+'</p><p><strong>Fecha:</strong> '+(record.fecha_salida||'')+' al '+(record.fecha_regreso||'')+'</p>'+(record.participantes?'<p><strong>Participantes:</strong> '+record.participantes+'</p>':'')+(record.transporte?'<p><strong>Transporte:</strong> '+record.transporte+'</p>':'');
+  else if(type==='pr') body='<p><strong>Actividad:</strong> '+(record.actividad||'')+'</p><p><strong>Justificacion:</strong></p><p>'+(record.justificacion||'')+'</p><p><strong>Tipo de recurso:</strong> '+(record.tipo_recurso||'')+'</p>'+(record.monto?'<p><strong>Monto:</strong> $'+parseFloat(record.monto||0).toLocaleString('es-MX',{minimumFractionDigits:2})+' MXN</p>':'')+(record.proyecto?'<p><strong>Proyecto:</strong> '+record.proyecto+'</p>':'');
+  else if(type==='oe') body='<p><strong>Evento:</strong> '+(record.nombre_evento||'')+'</p><p><strong>Fecha y sede:</strong> '+(record.fecha_evento||'')+' - '+(record.sede||'')+'</p><p><strong>Presupuesto:</strong> $'+parseFloat(record.presupuesto||0).toLocaleString('es-MX',{minimumFractionDigits:2})+' MXN</p><p><strong>Asistentes:</strong> '+(record.asistentes||'')+'</p><p><strong>Proyecto:</strong> '+(record.proyecto||'')+'</p><p><strong>LGAC/PLADEA:</strong></p><p>'+(record.lgac||'')+'</p>';
+  return '<!doctype html><html><head><meta charset="utf-8"><title>CITRO - '+folio+'</title><style>body{font-family:"Times New Roman",serif;font-size:12pt;line-height:1.65;margin:2cm;color:#111}p{margin-bottom:8px}@media print{body{margin:1.5cm}}</style></head><body>'+header+'<div style="text-align:right;margin-bottom:16px"><span style="font-family:monospace;background:#f2f5fa;padding:4px 10px;border-radius:4px;font-size:10pt;color:'+color+'">Folio: '+folio+'</span></div><p><strong>Asunto:</strong> '+record.label+'</p><p>A quien corresponda:</p><p>Yo, <strong>'+(record.grado?record.grado+' ':'')+record.apellidos+', '+record.nombres+'</strong>, con matricula <strong>'+record.matricula+'</strong>'+(record.programa?', estudiante del programa de <strong>'+record.programa+'</strong>':'')+', solicito respetuosamente:</p>'+body+'<p style="margin-top:12px">Atentamente,<br><strong>'+record.apellidos+', '+record.nombres+'</strong></p>'+firma+'</body></html>';
+}
+
+async function sendEmailWithAttachments(record, type, files){
+  var gasUrl=cfg.gasUrl||DEFAULT_GAS_URL;
+  var secret=cfg.secret||DEFAULT_SECRET;
+
+  // If GAS configured: send via backend (supports attachments as base64)
+  if(gasUrl){
+    try{
+      var attachData=[];
+      for(var i=0;i<files.length;i++){
+        var f=files[i];
+        var b64=await new Promise(function(res,rej){
+          var r=new FileReader();
+          r.onload=function(e){ res(e.target.result.split(',')[1]); };
+          r.onerror=function(){ res(''); };
+          r.readAsDataURL(f);
+        });
+        attachData.push({name:f.name,type:f.type,data:b64});
+      }
+      var printHtml=buildPrintHTML(record,type);
+      var payload={
+        action:'sendEmail',secret:secret,
+        to:CITRO_EMAIL,
+        folio:record.folio,tipo:record.label,
+        solicitante:record.apellidos+', '+record.nombres,
+        matricula:record.matricula,correo:record.correo||'',
+        body:buildEmailBody(record,type),
+        printHtml:printHtml,
+        attachments:attachData
+      };
+      var resp=await fetch(gasUrl,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+      var j=await resp.json();
+      if(j.ok) return {ok:true,via:'GAS'};
+      // If GAS fails, fall through to mailto
+    }catch(e){}
+  }
+
+  // Fallback: mailto (sin adjuntos binarios - notifica al usuario)
+  var subject='[CITRO] '+record.label+' - Folio '+record.folio+' - '+record.apellidos;
+  var bodyText=buildEmailBody(record,type);
+  if(files.length>0){
+    bodyText+='\n\nARCHIVOS ADJUNTOS ('+files.length+'):\n';
+    files.forEach(function(f){ bodyText+='  - '+f.name+' ('+fmtSize(f.size)+')\n'; });
+    bodyText+='\n[NOTA: Por limitaciones del cliente de correo, adjunte manualmente los archivos listados.]';
+  }
+  var mailtoUrl='mailto:'+CITRO_EMAIL+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(bodyText);
+  window.open(mailtoUrl,'_blank');
+  return {ok:true,via:'mailto'};
+}
+
+// ============================================================
+//  ACUSE DE RECIBO
+// ============================================================
+var _lastAcuseType='pg';
+
+function showAcuse(record, type, files, via){
+  _lastAcuseType=type;
+  document.getElementById('acuse-folio-num').textContent=record.folio;
+  document.getElementById('acuse-tipo').textContent=record.label;
+  document.getElementById('acuse-solicitante').textContent=record.apellidos+', '+record.nombres;
+  document.getElementById('acuse-matricula').textContent=record.matricula;
+  document.getElementById('acuse-fecha').textContent=new Date(record.fecha).toLocaleString('es-MX',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+  if(files.length){
+    document.getElementById('acuse-adjuntos').textContent=files.length+' archivo(s)';
+    var adjBox=document.getElementById('acuse-adj-box');
+    document.getElementById('acuse-adj-lista').innerHTML='<strong>Archivos enviados:</strong><br>'+files.map(function(f){return '&#128196; '+f.name+' ('+fmtSize(f.size)+')';}).join('<br>');
+    adjBox.style.display='flex';
+  } else {
+    document.getElementById('acuse-adjuntos').textContent='Ninguno';
+    document.getElementById('acuse-adj-box').style.display='none';
+  }
+  var now=new Date();
+  document.getElementById('acuse-ts').textContent='Registrado: '+now.toLocaleDateString('es-MX')+'  '+now.toLocaleTimeString('es-MX')+'  |  CITRO-Formularios v3.0';
+  document.getElementById('acuse-overlay').classList.add('show');
+}
+
+function cerrarAcuse(){
+  document.getElementById('acuse-overlay').classList.remove('show');
+}
+
+function acuseNuevo(){
+  cerrarAcuse();
+  // Reset form
+  resetForm(_lastAcuseType);
+  attachedFiles[_lastAcuseType]=[];
+  renderAttachList(_lastAcuseType);
+  document.querySelector('.content').scrollTo({top:0,behavior:'smooth'});
+}
+
+function acuseImprimir(){
+  var folio=document.getElementById('acuse-folio-num').textContent;
+  var tipo=document.getElementById('acuse-tipo').textContent;
+  var sol=document.getElementById('acuse-solicitante').textContent;
+  var mat=document.getElementById('acuse-matricula').textContent;
+  var fecha=document.getElementById('acuse-fecha').textContent;
+  var adj=document.getElementById('acuse-adjuntos').textContent;
+  var ts=document.getElementById('acuse-ts').textContent;
+  var w=window.open('','_blank','width=600,height=700');
+  w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>Acuse - '+folio+'</title><style>body{font-family:Arial,sans-serif;margin:2cm;color:#111;font-size:12pt}h1{color:#0D1F3C;font-size:14pt}.folio{font-size:18pt;font-weight:bold;color:#0A7A6E;text-align:center;border:2px solid #0A7A6E;padding:10px;border-radius:8px;margin:16px 0}.row{display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding:8px 0}.lbl{color:#777}.footer{margin-top:32px;font-size:9pt;color:#aaa;text-align:center}@media print{body{margin:1.5cm}}</style></head><body><h1>Acuse de Recibo - CITRO / UV</h1><div class="folio">Folio: '+folio+'</div><div class="row"><span class="lbl">Tipo de tramite</span><strong>'+tipo+'</strong></div><div class="row"><span class="lbl">Solicitante</span><strong>'+sol+'</strong></div><div class="row"><span class="lbl">Matricula UV</span><strong>'+mat+'</strong></div><div class="row"><span class="lbl">Fecha de registro</span><strong>'+fecha+'</strong></div><div class="row"><span class="lbl">Archivos adjuntos</span><strong>'+adj+'</strong></div><div class="row"><span class="lbl">Enviado a</span><strong>CtTramites2026 (Teams)</strong></div><div class="footer">'+ts+'</div></body></html>');
+  w.document.close();
+  setTimeout(function(){ w.print(); },300);
+}
+
+// ============================================================
+//  SUBMIT (con adjuntos + correo + acuse)
+// ============================================================
 async function submitForm(type) {
   if(!validate(type)) { showAlert(type,'error','Complete todos los campos obligatorios (*)'); return; }
 
-  const btn = document.getElementById('btn-submit-'+type);
+  var btn = document.getElementById('btn-submit-'+type);
   btn.disabled = true;
-  btn.textContent = '⏳ Registrando…';
+  btn.textContent = 'Registrando...';
 
-  const folio  = assignFolio(type);
-  const record = buildRecord(type, folio);
+  var folio  = assignFolio(type);
+  var record = buildRecord(type, folio);
+  var files  = attachedFiles[type] || [];
 
-  // Sincronizar con Drive / Sheets
-  const gasUrl = cfg.gasUrl || DEFAULT_GAS_URL;
-  let driveUrl = '';
+  // 1. Sincronizar con Drive / Sheets
+  var gasUrl = cfg.gasUrl || DEFAULT_GAS_URL;
+  var driveUrl = '';
   if(gasUrl) {
-    const result = await syncToDrive(record);
+    var result = await syncToDrive(record);
     if(result.ok) {
       driveUrl = result.driveUrl || '';
       record.driveUrl = driveUrl;
     }
   }
 
+  // 2. Guardar localmente
   data.push(record);
   saveData(data);
   updateAllCounters();
   updateFolioPreview(type);
 
-  const d = new Date().toISOString().split('T')[0].replace(/-/g,'');
-  const fname = `${TYPE_LABELS[type].replace(/ /g,'')}_${record.matricula}_${record.apellidos.split(' ')[0]}_${d}`;
+  // 3. Enviar correo
+  btn.textContent = 'Enviando correo...';
+  var emailResult = await sendEmailWithAttachments(record, type, files);
 
-  let msg = `✓ Folio ${folio} registrado  -  ${fname}`;
-  if(driveUrl) msg += `  -  <a href="${driveUrl}" target="_blank" style="color:var(--green)">Ver en Drive ↗</a>`;
-  else if(gasUrl) msg += '  -  ⚠️ Sin conexión a Drive (guardado localmente)';
-  else msg += '  -  Guardado localmente (Drive no configurado)';
-
-  document.getElementById(type+'-alert-msg').innerHTML = msg;
-  const alertEl = document.getElementById(type+'-alert');
-  alertEl.className = 'alert alert-success show';
-  setTimeout(()=>alertEl.classList.remove('show'), 9000);
-
+  // 4. Mostrar acuse
   btn.disabled = false;
-  btn.textContent = '⬇ Registrar + Guardar en Drive';
-  document.querySelector('.content').scrollTo({top:0,behavior:'smooth'});
+  btn.textContent = '&#8595; Registrar + Enviar';
+  showAcuse(record, type, files, emailResult.via);
 }
 
 function showAlert(type, kind, msg) {
@@ -1079,9 +1494,9 @@ function resetForm(type) {
   const a=document.getElementById(type+'-alert'); if(a) a.classList.remove('show');
 }
 
-// ════════════════════════════════════════════════════════════
+// ============================================================
 //  TABLA MIS TRÁMITES
-// ════════════════════════════════════════════════════════════
+// ============================================================
 function renderTable() {
   const q=((document.getElementById('q-search')||{}).value||'').toLowerCase();
   const tF=(document.getElementById('q-tipo')||{}).value||'';
@@ -1111,7 +1526,7 @@ function renderTable() {
       <td><span class="badge ${estadoMap[r.estado]||'badge-new'}">${r.estado}</span></td>
       <td>${driveCell}</td>
       <td style="display:flex;gap:4px">
-        <button class="btn btn-ghost btn-sm" onclick="changeStatus(${data.length-1-i})" title="Cambiar estado">✏️</button>
+        <button class="btn btn-ghost btn-sm" onclick="changeStatus(${data.length-1-i})" title="Cambiar estado"></button>
         <button class="btn btn-ghost btn-sm" onclick="printRecord(${data.length-1-i})" title="Imprimir">🖨</button>
         <button class="btn btn-ghost btn-sm" onclick="deleteRecord(${data.length-1-i})" title="Eliminar">🗑</button>
       </td>
@@ -1149,9 +1564,9 @@ function deleteRecord(idx) {
 
 function printRecord(idx) { printFormFromRecord(data[data.length-1-idx]||data[idx]); }
 
-// ════════════════════════════════════════════════════════════
+// ============================================================
 //  ADMIN TABLE
-// ════════════════════════════════════════════════════════════
+// ============================================================
 function renderAdminTable() {
   const q=((document.getElementById('adm-search')||{}).value||'').toLowerCase();
   const tF=((document.getElementById('adm-tipo')||{}).value)||'';
@@ -1224,7 +1639,7 @@ function renderAdminList(admins) {
       <span style="font-size:.82rem;font-weight:600;color:var(--navy)">${a['Email']||''}</span>
       ${a['Nombre']?`<span style="font-size:.72rem;color:var(--muted)">${a['Nombre']}</span>`:''}
       <span class="tag-admin">ADMIN</span>
-      <button class="btn btn-ghost btn-sm" style="margin-left:auto;font-size:.68rem;padding:2px 8px;color:var(--red)" onclick="removeAdmin('${a['Email']}')">✕</button>
+      <button class="btn btn-ghost btn-sm" style="margin-left:auto;font-size:.68rem;padding:2px 8px;color:var(--red)" onclick="removeAdmin('${a['Email']}')">x</button>
     </div>`).join('');
 }
 
@@ -1238,7 +1653,7 @@ async function addAdmin() {
   try {
     const r=await fetch(gasUrl,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'addAdmin',secret,email,nombre,requestedBy:currentUser.email})});
     const j=await r.json();
-    if(j.ok){ showAdminMsg('success',`✓ ${email} agregado como administrador`); document.getElementById('new-admin-email').value=''; document.getElementById('new-admin-nombre').value=''; refreshAdminData(true); }
+    if(j.ok){ showAdminMsg('success',`OK ${email} agregado como administrador`); document.getElementById('new-admin-email').value=''; document.getElementById('new-admin-nombre').value=''; refreshAdminData(true); }
     else showAdminMsg('error', j.error||'Error al agregar');
   } catch(e){ showAdminMsg('error','Error de conexión: '+e.message); }
 }
@@ -1250,7 +1665,7 @@ async function removeAdmin(email) {
   try {
     const r=await fetch(gasUrl,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'removeAdmin',secret,email,requestedBy:currentUser.email})});
     const j=await r.json();
-    if(j.ok){ showAdminMsg('success',`✓ ${email} removido`); refreshAdminData(true); }
+    if(j.ok){ showAdminMsg('success',`OK ${email} removido`); refreshAdminData(true); }
     else showAdminMsg('error',j.error||'Error al remover');
   } catch(e){ showAdminMsg('error',e.message); }
 }
@@ -1273,9 +1688,9 @@ function exportAdminCSV() {
   a.click();
 }
 
-// ════════════════════════════════════════════════════════════
+// ============================================================
 //  DASHBOARD
-// ════════════════════════════════════════════════════════════
+// ============================================================
 function renderDashboard() {
   const total=data.length,pend=data.filter(r=>r.estado==='Pendiente').length,done=data.filter(r=>r.estado==='Completado').length;
   const today_str=new Date().toISOString().split('T')[0];
@@ -1307,7 +1722,7 @@ function renderDashboard() {
   const syncEl=document.getElementById('sync-detail');
   const gasUrl=cfg.gasUrl||DEFAULT_GAS_URL;
   if(gasUrl) syncEl.innerHTML=`<span style="color:var(--green)">● Drive activo</span>  -  Los nuevos trámites se guardan automáticamente en Drive y en la hoja de seguimiento CITRO.`;
-  else syncEl.innerHTML='<span style="color:var(--muted)">☁️ Configure el URL del servidor en <strong>Configuración</strong> para activar Drive.</span>';
+  else syncEl.innerHTML='<span style="color:var(--muted)">☁ Configure el URL del servidor en <strong>Configuración</strong> para activar Drive.</span>';
 }
 
 function updateAllCounters() {
@@ -1317,22 +1732,22 @@ function updateAllCounters() {
   renderDashboard();
 }
 
-// ════════════════════════════════════════════════════════════
+// ============================================================
 //  CONFIG
-// ════════════════════════════════════════════════════════════
+// ============================================================
 async function saveConfig() {
   const gasUrl=(document.getElementById('cfg-gas-url')||{}).value||'';
   const secret=(document.getElementById('cfg-secret')||{}).value||'';
   cfg.gasUrl=gasUrl; cfg.secret=secret;
   saveCfg(cfg);
   const testEl=document.getElementById('conn-test-result');
-  testEl.innerHTML='<div class="sync-dot pending"></div> Probando…';
+  testEl.innerHTML='<div class="sync-dot pending"></div> Probando...';
   if(gasUrl) {
     try {
       const email=currentUser?currentUser.email:'test@uv.mx';
       const r=await fetch(`${gasUrl}?action=stats&email=${encodeURIComponent(email)}&secret=${encodeURIComponent(secret)}`);
       const j=await r.json();
-      if(j.ok||j.error==='No autorizado') { testEl.innerHTML='<div class="sync-dot ok"></div> <span style="color:var(--green)">Conexión exitosa ✓</span>'; isOnline=true; }
+      if(j.ok||j.error==='No autorizado') { testEl.innerHTML='<div class="sync-dot ok"></div> <span style="color:var(--green)">Conexión exitosa OK</span>'; isOnline=true; }
       else testEl.innerHTML=`<div class="sync-dot error"></div> <span style="color:var(--red)">Error: ${j.error}</span>`;
     } catch(e){ testEl.innerHTML=`<div class="sync-dot error"></div> <span style="color:var(--red)">Sin conexión: ${e.message}</span>`; }
   } else { testEl.innerHTML='<span style="color:var(--muted)">Sin URL configurado</span>'; }
@@ -1358,9 +1773,9 @@ function renderConfigStats() {
   if(cfg.mail)   document.getElementById('cfg-mail').value=cfg.mail;
 }
 
-// ════════════════════════════════════════════════════════════
+// ============================================================
 //  EXPORT / IMPORT
-// ════════════════════════════════════════════════════════════
+// ============================================================
 function exportCSV() {
   if(!data.length){ alert('Sin datos'); return; }
   const rows=[['Folio','Tipo','Apellidos','Nombres','Matrícula','Correo','Fecha','Estado','Drive']];
@@ -1388,50 +1803,28 @@ function clearAll() {
   alert('Datos locales borrados.');
 }
 
-// ════════════════════════════════════════════════════════════
+// ============================================================
 //  PRINT
-// ════════════════════════════════════════════════════════════
+// ============================================================
 function printForm(type) {
-  const r=buildRecord(type,'BORRADOR');
+  var r=buildRecord(type,'BORRADOR');
   r.type=type;
   printFormFromRecord(r);
 }
 
 function printFormFromRecord(r) {
-  const today=new Date().toLocaleDateString('es-MX',{day:'numeric',month:'long',year:'numeric'});
-  const folio=r.folio;
-  const TYPE_COLORS_HEX={pg:'#5B2F8A',sc:'#1A7A4A',pr:'#B85C0A',oe:'#1B5FA8'};
-  const color=TYPE_COLORS_HEX[r.type]||'#0A7A6E';
-
-  const header=`<div style="text-align:center;border-bottom:2px solid #0D1F3C;padding-bottom:12px;margin-bottom:16px"><div style="font-size:9pt;text-transform:uppercase;letter-spacing:.1em;color:#5A6880">Centro de Investigaciones Tropicales</div><div style="font-size:16pt;font-weight:bold;color:#0D1F3C">UNIVERSIDAD VERACRUZANA</div><div style="font-size:9pt;color:#5A6880">${cfg.inst||''}  -  Xalapa, Veracruz  -  ${today}</div></div>`;
-  const firma=`<div style="margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:32px"><div style="text-align:center"><div style="border-top:1px solid #333;padding-top:6px;font-size:9pt">Firma del solicitante<br><span style="color:#5A6880">${r.apellidos}, ${r.nombres}  -  ${r.matricula}</span></div></div><div style="text-align:center"><div style="border-top:1px solid #333;padding-top:6px;font-size:9pt">Vo.Bo. Dirección CITRO${cfg.director?'<br><span style="color:#5A6880">'+cfg.director+'</span>':''}</div></div></div><div style="margin-top:16px;text-align:center;font-size:8pt;color:#9AA5B4;border-top:1px solid #eee;padding-top:8px">CITRO-Formularios v3.0  -  Folio <strong style="color:${color}">${folio}</strong></div>`;
-
-  let body='';
-  if(r.type==='pg') body=`<p><strong>Tipo:</strong> ${r.tipo||''}</p><p><strong>Urgencia:</strong> ${r.urgencia||''}</p><p><strong>Descripción:</strong></p><p>${r.descripcion||''}</p>${r.obs?`<p><strong>Observaciones:</strong> ${r.obs}</p>`:''}${r.adjuntos?`<p><strong>Adjuntos:</strong> ${r.adjuntos}</p>`:''}`;
-  else if(r.type==='sc') body=`<p><strong>Lugar(es) [Lugares]:</strong></p><p>${r.lugares||''}</p><p><strong>Actividades [Actividades]:</strong></p><p>${r.actividades||''}</p><p><strong>Fecha [Fecha]:</strong> ${r.fecha_salida||''} al ${r.fecha_regreso||''}</p>${r.participantes?`<p><strong>Participantes:</strong> ${r.participantes}</p>`:''}${r.transporte?`<p><strong>Transporte:</strong> ${r.transporte}</p>`:''}`;
-  else if(r.type==='pr') body=`<p><strong>Actividad [Actividad]:</strong> ${r.actividad||''}</p><p><strong>Justificación [Justificación]:</strong></p><p>${r.justificacion||''}</p><p><strong>Tipo de recurso:</strong> ${r.tipo_recurso||''}</p>${r.monto?`<p><strong>Monto:</strong> $${parseFloat(r.monto||0).toLocaleString('es-MX',{minimumFractionDigits:2})} MXN</p>`:''}${r.proyecto?`<p><strong>Proyecto:</strong> ${r.proyecto}</p>`:''}`;
-  else if(r.type==='oe') body=`<p><strong>Evento [Evento]:</strong> ${r.nombre_evento||''}</p><p><strong>Fecha y sede [Datos]:</strong> ${r.fecha_evento||''}  -  ${r.sede||''}</p><p><strong>Presupuesto [Monto]:</strong> $${parseFloat(r.presupuesto||0).toLocaleString('es-MX',{minimumFractionDigits:2})} MXN</p><p><strong>Asistentes [Número]:</strong> ${r.asistentes||''}</p><p><strong>Proyecto [Proyecto]:</strong> ${r.proyecto||''}</p><p><strong>LGAC/PLADEA [Descripción]:</strong></p><p>${r.lgac||''}</p>`;
-
-  const w=window.open('','_blank','width=794,height=1100');
-  w.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>CITRO - ${folio}</title><style>body{font-family:'Times New Roman',serif;font-size:12pt;line-height:1.65;margin:2cm;color:#111}p{margin-bottom:8px}@media print{body{margin:1.5cm}}</style></head><body>
-    ${header}
-    <div style="text-align:right;margin-bottom:16px"><span style="font-family:monospace;background:#f2f5fa;padding:4px 10px;border-radius:4px;font-size:10pt;color:${color}">Folio: ${folio}</span></div>
-    <p><strong>Asunto:</strong> ${r.label}</p>
-    <p>A quien corresponda:</p>
-    <p>Yo, <strong>${r.grado?r.grado+' ':''}${r.apellidos}, ${r.nombres}</strong>, con matrícula <strong>${r.matricula}</strong>${r.programa?', estudiante del programa de <strong>'+r.programa+'</strong>':''}, solicito respetuosamente:</p>
-    ${body}
-    <p style="margin-top:12px">Atentamente,<br><strong>${r.apellidos}, ${r.nombres}</strong></p>
-    ${firma}
-    </body></html>`);
+  var html=buildPrintHTML(r,r.type);
+  var w=window.open('','_blank','width=794,height=1100');
+  w.document.write(html);
   w.document.close();
-  setTimeout(()=>w.print(),400);
+  setTimeout(function(){ w.print(); },400);
 }
 
 function toggleUserMenu() {}
 
-// ════════════════════════════════════════════════════════════
+// ============================================================
 //  INIT
-// ════════════════════════════════════════════════════════════
+// ============================================================
 function init() {
   const today=new Date().toISOString().split('T')[0];
   ['pg-fecha','sc-fecha-salida','sc-fecha-regreso','pr-fecha','oe-fecha'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=today;});
